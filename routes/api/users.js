@@ -20,7 +20,7 @@ router.post(
     check(
       'password',
       'Please enter password with 6 or more characters'
-    ).isLength({ min: 6 }),
+    ).isLength({ min: 6 })
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -42,14 +42,14 @@ router.post(
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
-        d: 'mm',
+        d: 'mm'
       });
 
       user = new User({
         name,
         email,
         avatar,
-        password,
+        password
       });
       // Encrypt password
       const salt = await bcrypt.genSalt(10);
@@ -61,8 +61,8 @@ router.post(
       // Return jswonwebtoken
       const payload = {
         user: {
-          id: user.id,
-        },
+          id: user.id
+        }
       };
 
       jwt.sign(
@@ -75,7 +75,7 @@ router.post(
         }
       );
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
       res.status(500).send('Server error');
     }
   }
