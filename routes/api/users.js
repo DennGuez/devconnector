@@ -58,13 +58,14 @@ router.post(
 
       await user.save();
 
-      // Return jswonwebtoken
+      // Creamos variable de user.id para JWT
       const payload = {
         user: {
           id: user.id
         }
       };
 
+      // Creamo el JWT
       jwt.sign(
         payload,
         config.get('jwtSecret'),

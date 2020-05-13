@@ -54,7 +54,7 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+          .json({ errors: [{ msg: 'Invalid Crendentials' }] });
       }
 
       // Return jswonwebtoken
